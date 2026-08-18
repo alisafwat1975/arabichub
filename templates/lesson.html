@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ lesson.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+
+    <h1>{{ lesson.title }}</h1>
+
+    <p class="lead mt-3">
+        {{ lesson.description }}
+    </p>
+
+    <p>
+        Level: {{ lesson.level }}
+    </p>
+
+</div>
+
+
+<div class="row mt-5">
+
+{% for item in items %}
+
+<div class="col-md-4 mb-4">
+
+    <div class="card h-100">
+
+        <div class="card-body text-center">
+
+            <h1 style="font-size:60px;">
+                {{ item.arabic }}
+            </h1>
+
+            <h4>
+                {{ item.transliteration }}
+            </h4>
+
+            <p>
+                {{ item.english }}
+            </p>
+
+            {% if lesson.id != 1 %}
+
+                {% if item.id in favorite_ids %}
+
+                <form action="{{ url_for('remove_favorite', vocabulary_id=item.id) }}"
+                      method="post"
+                      class="mb-3">
+
+                    <button class="btn btn-danger btn-sm">
+                        ❤️ Remove Favorite
+                    </button>
+
+                </form>
+
+                {% else %}
+
+                <form action="{{ url_for('add_favorite', vocabulary_id=item.id) }}"
+                      method="post"
+                      class="mb-3">
+
+                    <button class="btn btn-warning btn-sm">
+                        ⭐ Add to Favorites
+                    </button>
+
+                </form>
+
+                {% endif %}
+
+            {% endif %}
+
+            <small>
+                {{ item.item_type }}
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<div class="text-center mt-5">
+
+    <form action="{{ url_for('complete_lesson', lesson_id=lesson.id) }}"
+          method="post">
+
+        <button class="btn btn-success btn-lg px-5">
+            ✓ Complete Lesson
+        </button>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

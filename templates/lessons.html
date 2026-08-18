@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Lessons
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center">
+
+    <h1>Arabic Lessons</h1>
+
+    <p class="lead mt-3">
+        Follow your structured Arabic learning path.
+    </p>
+
+</div>
+
+
+<div class="row mt-5">
+
+{% for lesson in lessons %}
+
+<div class="col-md-6 mb-4">
+
+    <a href="{{ url_for('lesson', lesson_id=lesson.id) }}" class="text-decoration-none">
+
+        <div class="card h-100">
+
+            <div class="card-body text-center">
+
+                <h3>
+                    Lesson {{ lesson.sort_order }}
+                </h3>
+
+                <h5>
+                    {{ lesson.title }}
+                </h5>
+
+                <p>
+                    {{ lesson.description }}
+                </p>
+
+                {% if lesson.id == 1 %}
+                <p class="text-muted">
+                    <strong>28 Letters</strong>
+                </p>
+                {% elif lesson.id == 2 %}
+                <p class="text-muted">
+                    <strong>{{ lesson.vocabulary_count }} Greetings</strong>
+                </p>
+                {% elif lesson.id == 3 %}
+                <p class="text-muted">
+                    <strong>{{ lesson.vocabulary_count }} Numbers</strong>
+                </p>
+                {% else %}
+                <p class="text-muted">
+                    <strong>{{ lesson.vocabulary_count }} Vocabulary Items</strong>
+                </p>
+                {% endif %}
+
+                <p>
+                    Level: {{ lesson.level }}
+                </p>
+
+                {% if lesson.id in completed_lessons %}
+                <button class="btn btn-success">
+                    Review Lesson
+                </button>
+                {% else %}
+                <button class="btn btn-primary">
+                    Start Lesson
+                </button>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+{% endblock %}
+pwd

@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">
+            Welcome to ArabicHub
+        </h1>
+
+        <p class="lead text-muted">
+            Continue your journey to mastering Arabic.
+        </p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- Arabic Alphabet -->
+        <div class="col-md-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center py-3">
+
+                    <div style="font-size:45px;">🔤</div>
+
+                    <h3 class="mt-3">
+                        Arabic Alphabet
+                    </h3>
+
+                    <p>
+                        Learn all 28 Arabic letters with pronunciation,
+                        writing forms, and examples.
+                    </p>
+
+                    <strong>
+                        Alphabet Progress:
+                        {{ completed_letters }}/{{ total_letters }} Letters
+                    </strong>
+
+                    <div class="progress my-3" style="height:20px;">
+                        <div class="progress-bar bg-success"
+                             style="width:{{ alphabet_progress }}%">
+                        </div>
+                    </div>
+
+                    <p class="text-muted">
+                        {{ alphabet_progress }}% Completed
+                    </p>
+
+                    <a href="/lessons/alphabet"
+                       class="btn btn-success">
+                        Start Lesson
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Everyday Arabic -->
+        <div class="col-md-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center py-3">
+
+                    <div style="font-size:45px;">💬</div>
+
+                    <h3 class="mt-3">
+                        Everyday Arabic
+                    </h3>
+
+                    <p>
+                        Learn greetings, shopping, travel and daily conversation.
+                    </p>
+
+                    <a href="/lesson/2"
+                       class="btn btn-primary">
+                        Start Lesson
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Harakat -->
+        <div class="col-md-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center py-3">
+
+                    <div style="font-size:45px;">✍️</div>
+
+                    <h3 class="mt-3">
+                        Harakat
+                    </h3>
+
+                    <p>
+                        Master Arabic vowels and pronunciation marks.
+                    </p>
+
+                    <a href="/lesson/5"
+                       class="btn btn-primary">
+                        Start Lesson
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row g-3 mt-2">
+
+
+        <!-- Quiz -->
+        <div class="col-md-6">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center py-3">
+
+                    <div style="font-size:45px;">🧠</div>
+
+                    <h3 class="mt-3">
+                        Interactive Quizzes
+                    </h3>
+
+                    <p>
+                        Test your understanding after every lesson.
+                    </p>
+
+                    <a href="/quiz"
+                       class="btn btn-primary">
+                        Start Quiz
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Overall Progress -->
+        <div class="col-md-6">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center py-3">
+
+                    <div style="font-size:45px;">🏆</div>
+
+                    <h3 class="mt-3">
+                        Overall Course Progress
+                    </h3>
+
+                    <strong>
+                        {{ progress }}% Completed Overall
+                    </strong>
+
+                    <div class="progress my-4" style="height:25px;">
+                        <div class="progress-bar bg-success"
+                             style="width:{{ progress }}%">
+                        </div>
+                    </div>
+
+                    <p>
+                        Keep learning to unlock new lessons.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

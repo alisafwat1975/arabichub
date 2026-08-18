@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}ArabicHub{% endblock %}
+
+{% block content %}
+
+<div class="hero text-center">
+
+    <h1>Welcome to ArabicHub</h1>
+
+    <p class="lead mt-3">
+        Learn Arabic from the alphabet to everyday conversations.
+    </p>
+
+    <div class="mt-4">
+        <a href="/register" class="btn btn-success btn-lg me-2">
+            Get Started
+        </a>
+
+        <a href="/login" class="btn btn-outline-success btn-lg">
+            Login
+        </a>
+    </div>
+
+</div>
+
+<div class="row mt-5">
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="lesson-icon">🔤</div>
+
+                <h4 class="mt-3">Arabic Alphabet</h4>
+
+                <p>
+                    Learn letters, pronunciation and writing.
+                </p>
+
+                <a href="{{ url_for('alphabet') }}" class="btn btn-primary">
+                    Start Learning
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+
+                <div class="lesson-icon">💬</div>
+
+                <h4 class="mt-3">Everyday Arabic</h4>
+
+                <p>
+                    Greetings, shopping, travel and daily conversation.
+                </p>
+
+                <a href="{{ url_for('lesson', lesson_id=2) }}" class="btn btn-primary">
+                    Start Learning
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+
+                <div class="lesson-icon">🧠</div>
+
+                <h4 class="mt-3">Interactive Quizzes</h4>
+
+                <p>
+                    Test your understanding after every lesson.
+                </p>
+
+                <a href="{{ url_for('quiz') }}" class="btn btn-primary">
+                    Start Quiz
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+body{
+    background:#f5f7fb;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.navbar{
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
+}
+
+.btn{
+    border-radius:10px;
+    padding:10px 22px;
+}
+
+.display-4{
+    font-weight:700;
+}
+
+.progress{
+    border-radius:25px;
+}
+
+.progress-bar{
+    font-weight:bold;
+}
+
+footer{
+    margin-top:80px;
+    color:#777;
+    text-align:center;
+    padding:30px;
+}
+
+h1,h2,h3{
+    font-weight:700;
+}
+
+.container{
+    max-width:1200px;
+}

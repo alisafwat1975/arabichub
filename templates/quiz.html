@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Quiz
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="text-center">
+
+        <h1>Arabic Quiz</h1>
+
+        <p class="lead mt-3">
+            Test your Arabic knowledge.
+        </p>
+
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center mt-5">
+
+        <h5 class="mb-0">
+            Question {{ number }} of {{ total }}
+        </h5>
+
+        <h5 class="mb-0">
+            Score: {{ score }}
+        </h5>
+
+    </div>
+
+    <div class="progress mt-2" style="height:10px;">
+
+        <div class="progress-bar bg-success"
+             style="width: {{ ((number - 1) / total) * 100 }}%">
+        </div>
+
+    </div>
+
+
+    <div class="card shadow mt-4">
+
+        <div class="card-body text-center py-5">
+
+            <h3>
+                {{ question.text }}
+            </h3>
+
+
+            <div class="mt-4">
+
+                {% for choice in question.choices %}
+
+                <form action="{{ url_for('quiz_answer') }}"
+                      method="post"
+                      class="d-inline">
+
+                    <input type="hidden"
+                           name="choice"
+                           value="{{ choice }}">
+
+                    <button class="btn btn-outline-primary m-2"
+                            type="submit">
+                        {{ choice }}
+                    </button>
+
+                </form>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="text-center mt-4">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="btn btn-outline-secondary">
+            Leave Quiz
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

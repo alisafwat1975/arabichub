@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Favorites
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">⭐ My Favorite Vocabulary</h2>
+
+    {% if favorites %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Arabic</th>
+                <th>Transliteration</th>
+                <th>English</th>
+                <th>Lesson</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for word in favorites %}
+            <tr>
+                <td class="fs-4">{{ word.arabic }}</td>
+                <td>{{ word.transliteration }}</td>
+                <td>{{ word.english }}</td>
+                <td>{{ word.title }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-info">
+        You haven't added any favorite vocabulary yet.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ letter.name }}
+{% endblock %}
+
+{% block content %}
+
+<script>
+function playSound(file){
+    const audio=document.getElementById("player");
+    if(file.startsWith("examples/")){
+        audio.src="/static/audio/" + file;
+    } else {
+        audio.src="/static/audio/alphabet/" + file;
+    }
+    audio.play();
+}
+</script>
+
+<audio id="player"></audio>
+
+<div class="container py-4">
+
+    <div class="mb-4">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <h2>
+                Letter {{ number }} of {{ total }}
+            </h2>
+
+            <div>
+                <strong class="me-3">
+                    {{ ((number / total) * 100) | round | int }}%
+                </strong>
+
+                <form action="/complete-letter/{{ number }}" method="post" class="d-inline">
+
+                    {% if number < total %}
+                    <button class="btn btn-success" type="submit">
+                        ✓ Mark Letter Completed & Next →
+                    </button>
+                    {% else %}
+                    <button class="btn btn-primary" type="submit">
+                        ✓ Complete Alphabet Lesson
+                    </button>
+                    {% endif %}
+
+                </form>
+            </div>
+
+        </div>
+
+        <div class="progress mt-2">
+
+            <div class="progress-bar bg-success"
+                 style="width: {{ (number/total)*100 }}%">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card shadow-lg">
+
+        <div class="card-body text-center p-5">
+
+            <div style="font-size:120px;font-weight:bold;">
+                {{ letter.letter }}
+            </div>
+
+            <h1 class="mt-3">
+                {{ letter.name }}
+            </h1>
+
+            <h4 class="text-muted">
+                English Approximation: {{ letter.sound }}
+            </h4>
+
+            <div class="mt-4">
+
+                <button class="btn btn-primary"
+                        onclick="playSound('{{ letter.audio }}')">
+                    🔊 Hear Sound
+                </button>
+
+            </div>
+
+            <hr class="my-5">
+
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered text-center align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Isolated</th>
+                            <th>Beginning</th>
+                            <th>Middle</th>
+                            <th>End</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:2.3rem;">
+                            <td>{{ letter.isolated }}</td>
+                            <td>{{ letter.beginning }}</td>
+                            <td>{{ letter.middle }}</td>
+                            <td>{{ letter.end }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+            <h3>Example Word</h3>
+
+            <div class="text-center mt-3">
+                <div class="fs-2 fw-bold d-flex justify-content-center align-items-center gap-2">
+                    <span>{{ letter.example }}</span>
+                    <button class="btn btn-outline-primary btn-sm" onclick="playSound('examples/{{ letter.example_audio }}')">🔊</button>
+                </div>
+                <div class="text-secondary fst-italic mt-2">
+                    {{ letter.example_english }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+
+        {% if number > 1 %}
+
+        <a class="btn btn-outline-secondary"
+           href="/lessons/alphabet/{{ number-1 }}">
+            ← Previous
+        </a>
+
+        {% else %}
+
+        <span></span>
+
+        {% endif %}
+
+        <a class="btn btn-dark"
+           href="/lessons/alphabet">
+            Alphabet
+        </a>
+
+        <form action="/complete-letter/{{ number }}" method="post" class="ms-3">
+
+            {% if number < total %}
+
+            <button class="btn btn-success" type="submit">
+                ✓ Mark Letter Completed & Next →
+            </button>
+
+            {% else %}
+
+            <button class="btn btn-primary" type="submit">
+                ✓ Complete Alphabet Lesson
+            </button>
+
+            {% endif %}
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
